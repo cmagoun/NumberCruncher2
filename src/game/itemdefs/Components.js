@@ -49,8 +49,8 @@ export const pos = (x, y, gm) => {
     return {
         cname:"pos",
         vec: {x,y},
-        onEdit: (eid) => {if(eid === "player") gm.requestFullLOSUpdate();},
-        onRemove: () => gm.requestFullLOSUpdate()
+        //onEdit: (eid) => {if(eid === "player") gm.requestFullLOSUpdate();},
+        //onRemove: () => gm.requestFullLOSUpdate()
     };
 }
 

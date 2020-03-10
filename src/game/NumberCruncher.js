@@ -3,6 +3,8 @@ import * as Keyboard from '../utilities/keyboard';
 import * as Vector from '../utilities/vector';
 import * as Move from './systems/Move';
 import * as LevelCreator from './mapgen/LevelCreator';
+import * as Player from './itemdefs/Player';
+
 import { mapIndexKey, arenaWidth, arenaHeight } from "./Constants";
 
 export const states = {
@@ -134,6 +136,7 @@ class NumberCruncher extends BaseGameManager {
             case states.NEW_LEVEL:
                 this.level++;
                 LevelCreator.createLevel(arenaWidth, arenaHeight, this.level, this);
+                Player.create(1, 1, this);
                 this.updateGameState(states.TURN_START);
                 break;
 
