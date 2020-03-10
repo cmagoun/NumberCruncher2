@@ -25,16 +25,16 @@ export const request = (id, moveTo, gm) => {
             doMove(mover, answer.destination, gm);
             break;
 
-        case "interact":   
-            const props = {
-                pos: moveTo,
-                actor: mover,
-                entity: answer.entity
-            };
+        // case "interact":   
+        //     const props = {
+        //         pos: moveTo,
+        //         actor: mover,
+        //         entity: answer.entity
+        //     };
 
-            Interaction.start(answer.entity.interacts.interaction, props, gm);
-            //answer.entity.interacts.onInteract(mover, moveTo, answer.entity, gm);
-            break;
+        //     Interaction.start(answer.entity.interacts.interaction, props, gm);
+        //     //answer.entity.interacts.onInteract(mover, moveTo, answer.entity, gm);
+        //     break;
 
         default:
             break; 
@@ -42,25 +42,7 @@ export const request = (id, moveTo, gm) => {
 }
 
 export const doMove = (mover, to, gm) => {
-    if(mover.id === "player") {
-        mover.edit("pos", {vec: {x:to.x, y:to.y}});
-        mover.edit("sprite", {draw: {x:to.x, y:to.y}});
-        gm.centerOnPoint(to.x, to.y);
-    } else {
-        Animate.slide(mover, mover.sprite.draw, to, defaultSlideTime);
-        mover.edit("pos", {vec: {x:to.x, y:to.y}});
-    }
-
-
-    //leaving this here -- now the functionality is in the pos component
-    //but I wonder if this is mistake
-    // if(mover.id === "player") {
-    //     gm.requestFullLOSUpdate();
-    // }
-    // else {
-    //     //did the entity move in/out of the LOS of player?
-    //     //gm.requestSingleLOSUpdate(mover);
-    // }
-
+    Animate.slide(mover, mover.sprite.draw, to, defaultSlideTime);
+    mover.edit("pos", {vec: {x:to.x, y:to.y}});
     gm.turnDone(); 
 }
